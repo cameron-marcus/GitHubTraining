@@ -1,0 +1,28 @@
+name: Github Actions Demo
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - .github/**
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '15 16 * * sun'
+  workflow_dispatch:
+  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Output event and branch information
+      run: |
+        echo "Event that triggered the workflow: $GITHUB_EVENT_NAME"
+        echo "Branch currently being referenced: $GITHUB_REF"
+
+    - name: List all files in the repository
+      run: |
+        ls -la
